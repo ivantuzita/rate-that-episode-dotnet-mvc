@@ -1,0 +1,50 @@
+﻿@model IEnumerable<Episode>
+
+<div class="container p-3">
+    <div class="row p-4">
+        <div class="col-6">
+            <h1><strong>Episode List:</strong></h1>
+        </div>
+        <div class="col-6 text-end">
+            <a asp-controller="Episode" asp-action="Add" class="btn btn-outline-dark">
+                <i class="bi bi-plus-square"></i> &nbsp; Add new episode</a>
+        </div>
+    </div>
+</div>
+
+<table class="table text-center" style="width:100%">
+    <thead>
+        <tr class="table-dark" style="width: 500px">
+            <th>
+                Episode Name
+            </th>
+            <th>
+                Episode Number
+            </th>
+            <th>
+                Episode Synopsis
+            </th>
+            <th>
+                Overall Rating
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var obj in Model) {
+            <tr class="table-light align-content-center">
+                <td width="30%">
+                    @obj.Name
+                </td>
+                <td width="5%">
+                    @obj.Number
+                </td>
+                <td width="50%">
+                    @obj.Synopsys
+                </td>
+                <td width="5%">
+                    @obj.OverallRating
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
