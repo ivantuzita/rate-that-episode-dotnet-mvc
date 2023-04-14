@@ -28,6 +28,7 @@ namespace RateThatEpisode.Controllers {
             }
             _db.Episodes.Add(obj);
             _db.SaveChanges();
+            TempData["addSuccess"] = "The episode has been added successfully!";
             return RedirectToAction("Index");
         }
 
@@ -50,6 +51,7 @@ namespace RateThatEpisode.Controllers {
             }
             _db.Episodes.Update(obj);
             _db.SaveChanges();
+            TempData["editSuccess"] = "The episode has been edited successfully!";
             return RedirectToAction("Index");
         }
 
@@ -73,6 +75,7 @@ namespace RateThatEpisode.Controllers {
             }
             _db.Episodes.Remove(obj);
             _db.SaveChanges();
+            TempData["deleteSuccess"] = "The episode has been deleted successfully!";
             return RedirectToAction("Index");
         }
     }

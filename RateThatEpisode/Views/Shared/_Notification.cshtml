@@ -1,0 +1,18 @@
+﻿@if (TempData["addSuccess"] != null) {
+    <div class="alert alert-dismissible alert-success" style="float:right">
+      <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+      <strong>Well done!</strong> @TempData["addSuccess"]
+    </div>
+}
+@if (TempData["editSuccess"] != null) {
+    <div class="alert alert-dismissible alert-secondary" style="float:right">
+      <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+      <strong>Well done!</strong> @TempData["editSuccess"]
+    </div>
+}
+@if (TempData["deleteSuccess"] != null) {
+    <div class="alert alert-dismissible alert-secondary" style="float:right">
+      <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+      <strong>Well done!</strong> @TempData["deleteSuccess"]
+    </div>
+}
