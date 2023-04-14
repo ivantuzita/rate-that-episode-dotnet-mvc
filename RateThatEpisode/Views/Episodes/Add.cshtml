@@ -1,0 +1,35 @@
+﻿@model Episode
+
+<form method="post">
+    <div class="card bg-secondary p-3 mt-4">
+        <h1 class="card-header"><strong>Adding new episode...</strong></h1>
+        <div class="card-body pb-1">
+            <div class="form-group">
+                <label asp-for="Number" class="form-label"><strong>Episode Number:</strong></label>  
+                <input asp-for="Number" class="form-control" placeholder="Enter episode number" />
+                <span asp-validation-for="Number" class="badge bg-danger mt-2"></span>
+                <small class="form-text text-muted">What is the episode number?</small>
+            </div>
+            <div class="form-group mt-4">
+                <label asp-for="Name" class="form-label"><strong>Episode Name:</strong></label>
+                <input asp-for="Name" class="form-control" placeholder="Enter episode name">
+                <small class="form-text text-muted">What is the name of the episode? (If you don't know, it's okay to leave it blank!)</small>
+            </div>
+            <div class="form-group mt-4">
+                <label asp-for="Synopsys" class="form-label"><strong>Episode Synopsys:</strong></label>
+                <input asp-for="Synopsys" class="form-control" placeholder="Enter episode synopsys">
+                <small class="form-text text-muted">What is the synopsys of the episode? (If you don't know, it's okay to leave it blank!)</small>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-outline-dark">Save changes</button>
+                <a asp-controller="Episodes" asp-action="Index" class="btn btn-outline-light">Cancel</a>
+            </div>
+        </div>
+    </div>
+</form>
+
+@section Scripts {
+    @{
+      <partial name="_ValidationScriptsPartial" />
+    }
+}
