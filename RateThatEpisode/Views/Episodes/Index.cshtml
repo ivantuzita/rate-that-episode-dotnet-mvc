@@ -1,6 +1,10 @@
-﻿@model IEnumerable<Episode>
+﻿@model RatingViewModel
+@using System.Linq
+
 @{
     ViewData["Title"] = "Index";
+    IEnumerable<Series> series = Model.GetSeries;
+    IEnumerable<Episode> episodes = Model.GetEpisodes;
 }
 
 <partial name="_Notification"/>
@@ -20,6 +24,9 @@
     <thead>
         <tr class="table-dark" style="width: 500px">
             <th>
+                Series Name
+            </th>
+            <th>
                 Episode Number
             </th>
             <th>
@@ -38,25 +45,30 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var obj in Model) {
+        <!-- ALWAYS USE ToList()!!!!!! otherwise program thinks the db connection is open (which is really dumb) -->
+        @foreach (var episode in episodes.ToList()) {
             <tr class="table-light align-content-center">
+                <td width="30%">
+                    <!-- And opening another connection (variable series in this case) is impossible! -->
+                    @series.Where(b => b.Id == episode.SeriesID).Select(b => b.Name).First()
+                </td>
                 <td width="5%">
-                    @obj.Number
+                    @episode.Number
                 </td>
                 <td width="30%">
-                    <strong>@obj.Name</strong>
+                    <strong>@episode.Name</strong>
                 </td>
                 <td width="50%">
-                    @obj.Synopsys
+                    @episode.Synopsys
                 </td>
                 <td width="5%">
-                    <strong>@obj.OverallRating</strong>
+                    <strong>@episode.OverallRating</strong>
                 </td>
                 <td width="5%">
-                    <a class="badge bg-warning" asp-controller="Episodes" asp-action="Edit" asp-route-id="@obj.Id"><i class="bi bi-pencil"> Edit</i></a>
+                    <a class="badge bg-warning" asp-controller="Episodes" asp-action="Edit" asp-route-id="@episode.Id"><i class="bi bi-pencil"> Edit</i></a>
                 </td>
                 <td width="5%">
-                    <a class="badge bg-danger" asp-controller="Episodes" asp-action="Delete" asp-route-id="@obj.Id" onclick="return confirm('Are you sure you want to delete this?')"><i class="bi bi-trash"> Delete</i></a>
+                    <a class="badge bg-danger" asp-controller="Episodes" asp-action="Delete" asp-route-id="@episode.Id" onclick="return confirm('Are you sure you want to delete this?')"><i class="bi bi-trash"> Delete</i></a>
                 </td>
             </tr>
         }

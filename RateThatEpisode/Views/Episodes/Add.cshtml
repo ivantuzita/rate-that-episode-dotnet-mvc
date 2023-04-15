@@ -1,26 +1,35 @@
-﻿@model Episode
+﻿@model RatingViewModel
 
 <form method="post">
     <div class="card bg-secondary p-3 mt-4">
         <h1 class="card-header"><strong>Adding new episode...</strong></h1>
         <div class="card-body pb-1">
             <div class="form-group">
-                <label asp-for="Number" class="form-label"><strong>Episode Number:</strong></label>  
-                <input asp-for="Number" class="form-control" placeholder="Enter episode number" />
-                <span asp-validation-for="Number" class="badge bg-danger mt-2"></span>
+                <label asp-for="Episode.Number" class="form-label"><strong>Episode Number:</strong></label>  
+                <input asp-for="Episode.Number" class="form-control" placeholder="Enter episode number" />
+                <span asp-validation-for="Episode.Number" class="badge bg-danger mt-2"></span>
                 <small class="form-text text-muted">What is the episode number?</small>
             </div>
             <div class="form-group mt-4">
-                <label asp-for="Name" class="form-label"><strong>Episode Name:</strong></label>
-                <input asp-for="Name" class="form-control" placeholder="Enter episode name">
-                <span asp-validation-for="Name" class="badge bg-danger mt-2"></span>
+                <label asp-for="Episode.Name" class="form-label"><strong>Episode Name:</strong></label>
+                <input asp-for="Episode.Name" class="form-control" placeholder="Enter episode name">
+                <span asp-validation-for="Episode.Name" class="badge bg-danger mt-2"></span>
                 <small class="form-text text-muted">What is the name of the episode? (If you don't know, it's okay to leave it blank!)</small>
             </div>
             <div class="form-group mt-4">
-                <label asp-for="Synopsys" class="form-label"><strong>Episode Synopsys:</strong></label>
-                <input asp-for="Synopsys" class="form-control" placeholder="Enter episode synopsys">
-                <span asp-validation-for="Synopsys" class="badge bg-danger mt-2"></span>
+                <label asp-for="Episode.Synopsys" class="form-label"><strong>Episode Synopsys:</strong></label>
+                <input asp-for="Episode.Synopsys" class="form-control" placeholder="Enter episode synopsys">
+                <span asp-validation-for="Episode.Synopsys" class="badge bg-danger mt-2"></span>
                 <small class="form-text text-muted">What is the synopsys of the episode? (If you don't know, it's okay to leave it blank!)</small>
+            </div>
+            <div class="form-group">
+              <label asp-for="Episode.Series" class="form-label mt-4">Select series</label>
+              <select class="form-select" asp-for="Episode.SeriesID">
+                    @foreach (Series series in Model.GetSeries) {
+                        <option value="@series.Id">@series.Name</option>
+                    }
+              </select>
+              <small class="form-text text-muted">What is the series?</small>
             </div>
             <div class="modal-footer">
                 <button type="submit" class="btn btn-outline-dark">Save changes</button>

@@ -6,27 +6,31 @@ namespace RateThatEpisode.Controllers {
     public class EpisodesController : Controller {
 
         private readonly ApplicationDbContext _db;
+        private RatingViewModel ViewModel = new RatingViewModel();
         public EpisodesController(ApplicationDbContext db) {
             _db = db;
         }
 
         public IActionResult Index() {
-            IEnumerable<Episode> objEpisodeList = _db.Episodes;
-            return View(objEpisodeList);
-
+            ViewModel.GetSeries = _db.Series;
+            ViewModel.GetEpisodes = _db.Episodes;
+            return View(ViewModel);
         }
 
         public IActionResult Add() {
-            return View();
+            ViewModel.GetSeries = _db.Series;
+            ViewModel.GetEpisodes = _db.Episodes;
+            return View(ViewModel);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Add(Episode obj) {
+        public IActionResult Add(RatingViewModel obj) {
+
             if (!ModelState.IsValid) {
-                return View(obj);
+                return View();
             }
-            _db.Episodes.Add(obj);
+            _db.Episodes.Add(obj.Episode);
             _db.SaveChanges();
             TempData["addSuccess"] = "The episode has been added successfully!";
             return RedirectToAction("Index");
@@ -47,7 +51,7 @@ namespace RateThatEpisode.Controllers {
         [ValidateAntiForgeryToken]
         public IActionResult Edit(Episode obj) {
             if (!ModelState.IsValid) {
-                return View(obj);
+                return View();
             }
             _db.Episodes.Update(obj);
             _db.SaveChanges();

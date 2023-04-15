@@ -11,5 +11,8 @@ namespace RateThatEpisode.Models {
         public string? Synopsys { get; set; }
         public double OverallRating { get; set; }
 
+        public int SeriesID { get; set; }
+        public Series? Series { get; set; }
+
     }
 }

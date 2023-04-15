@@ -6,6 +6,7 @@ namespace RateThatEpisode.Data {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> opts) : base(opts) { }
 
         public DbSet<Episode> Episodes { get; set; }
+        public DbSet<Series> Series { get; set; }
 
     }
 }
