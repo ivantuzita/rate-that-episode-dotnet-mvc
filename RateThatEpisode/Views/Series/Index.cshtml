@@ -8,27 +8,23 @@
 
 <partial name="_Notification"/>
 
-
 <div class="container p-3">
     <div class="row p-4">
         <div class="col-6">
-            <h1><strong>Episode List:</strong></h1>
+            <h1><strong>Series List:</strong></h1>
         </div>
         <div class="col-6 text-end">
-            <a asp-controller="Episodes" asp-action="Add" class="btn btn-outline-dark">
+            <a asp-controller="Series" asp-action="Add" class="btn btn-outline-dark">
                 <i class="bi bi-plus-square"></i> &nbsp; Add new series</a>
         </div>
     </div>
 </div>
 
-<table class="table text-center" style="width:100%">
+<table class="table text-center">
     <thead>
-        <tr class="table-dark" style="width: 500px">
+        <tr class="table-dark" style="width: 200px">
             <th>
                 Series Name
-            </th>
-            <th>
-                Year of Debut
             </th>
             <th>
                 Number of Episodes
@@ -47,9 +43,6 @@
             <tr class="table-light align-content-center">
                 <td width="30%">
                    <strong>@series.Name</strong>
-                </td>
-                <td width="15%">
-                    @series.DebutYear.Year
                 </td>
                 <td width="15%">
                     @series.NumberOfEpisodes

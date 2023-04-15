@@ -7,7 +7,6 @@ namespace RateThatEpisode.Models {
         public int Id { get; set; }
         [Required]
         public string Name { get; set; }
-        public DateOnly DebutYear { get; set; }
         public int NumberOfEpisodes { get; set; }
         public double OverallRating { get; set; }
         public ICollection<Episode>? Episodes { get; set; }

@@ -1,0 +1,25 @@
+﻿@model RatingViewModel
+
+<form method="post">
+    <div class="card bg-secondary p-3 mt-4">
+        <h1 class="card-header"><strong>Adding new series...</strong></h1>
+        <div class="card-body pb-1">
+            <div class="form-group">
+                <label asp-for="Series.Name" class="form-label"><strong>Series Name:</strong></label>  
+                <input asp-for="Series.Name" class="form-control" placeholder="Enter series name" />
+                <span asp-validation-for="Series.Name" class="badge bg-danger mt-2"></span>
+                <small class="form-text text-muted">What is the name of the series?</small>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-outline-dark">Save changes</button>
+                <a asp-controller="Series" asp-action="Index" class="btn btn-outline-light">Cancel</a>
+            </div>
+        </div>
+    </div>
+</form>
+
+@section Scripts {
+    @{
+      <partial name="_ValidationScriptsPartial" />
+    }
+}

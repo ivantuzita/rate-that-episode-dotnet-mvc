@@ -15,5 +15,24 @@ namespace RateThatEpisode.Controllers {
             ViewModel.GetSeries = _db.Series;
             return View(ViewModel);
         }
+
+        public IActionResult Add() {
+            ViewModel.GetSeries = _db.Series;
+            return View(ViewModel);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Add(RatingViewModel obj) {
+
+            if (!ModelState.IsValid) {
+                return View();
+            }
+
+            _db.Series.Add(obj.Series);
+            _db.SaveChanges();
+            TempData["addSuccess"] = "The episode has been added successfully!";
+            return RedirectToAction("Index");
+        }
     }
 }
