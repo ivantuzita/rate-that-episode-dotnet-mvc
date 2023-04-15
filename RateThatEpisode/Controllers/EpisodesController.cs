@@ -30,6 +30,11 @@ namespace RateThatEpisode.Controllers {
             if (!ModelState.IsValid) {
                 return View();
             }
+            Series upSeries = _db.Series.Find(obj.Episode.SeriesID);
+            upSeries.AddEpisode();
+            upSeries.setOverallRating(obj.Episode.Rating);
+            _db.Series.Attach(upSeries);
+            _db.Entry(upSeries).Property(x => x.NumberOfEpisodes).IsModified = true;
             _db.Episodes.Add(obj.Episode);
             _db.SaveChanges();
             TempData["addSuccess"] = "The episode has been added successfully!";
@@ -53,13 +58,15 @@ namespace RateThatEpisode.Controllers {
             if (!ModelState.IsValid) {
                 return View();
             }
-            _db.Episodes.Update(obj);
+            _db.Episodes.Attach(obj);
+            _db.Entry(obj).Property(x => x.Number).IsModified = true;
+            _db.Entry(obj).Property(x => x.Name).IsModified = true;
+            _db.Entry(obj).Property(x => x.Synopsys).IsModified = true;
             _db.SaveChanges();
             TempData["editSuccess"] = "The episode has been edited successfully!";
             return RedirectToAction("Index");
         }
 
-        //GETs the id, 
         public IActionResult Delete(int? id) {
 
             if (id == null || id == 0) { return NotFound(); }
@@ -77,6 +84,10 @@ namespace RateThatEpisode.Controllers {
             if (!ModelState.IsValid) {
                 return RedirectToAction("Index");
             }
+            Series upSeries = _db.Series.Find(obj.SeriesID);
+            upSeries.RemoveEpisode();
+            _db.Series.Attach(upSeries);
+            _db.Entry(upSeries).Property(x => x.NumberOfEpisodes).IsModified = true;
             _db.Episodes.Remove(obj);
             _db.SaveChanges();
             TempData["deleteSuccess"] = "The episode has been deleted successfully!";

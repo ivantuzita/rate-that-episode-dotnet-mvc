@@ -31,6 +31,21 @@
               </select>
               <small class="form-text text-muted">What is the series?</small>
             </div>
+            <div class="form-group">
+              <label asp-for="Episode.Rating" class="form-label mt-4">Rate the episode!</label>
+              <select class="form-select" asp-for="Episode.Rating">
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                  <option value="9">9</option>
+                  <option value="10">10</option>
+              </select>
+            </div>
             <div class="modal-footer">
                 <button type="submit" class="btn btn-outline-dark">Save changes</button>
                 <a asp-controller="Episodes" asp-action="Index" class="btn btn-outline-light">Cancel</a>

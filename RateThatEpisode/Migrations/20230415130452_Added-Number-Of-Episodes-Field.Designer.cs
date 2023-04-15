@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RateThatEpisode.Data;
 
@@ -10,9 +11,11 @@ using RateThatEpisode.Data;
 namespace RateThatEpisode.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230415130452_Added-Number-Of-Episodes-Field")]
+    partial class AddedNumberOfEpisodesField
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -31,7 +34,7 @@ namespace RateThatEpisode.Migrations
                     b.Property<int>("Number")
                         .HasColumnType("int");
 
-                    b.Property<double>("Rating")
+                    b.Property<double>("OverallRating")
                         .HasColumnType("double");
 
                     b.Property<int>("SeriesID")
@@ -62,9 +65,6 @@ namespace RateThatEpisode.Migrations
 
                     b.Property<int>("NumberOfEpisodes")
                         .HasColumnType("int");
-
-                    b.Property<double>("OverallRating")
-                        .HasColumnType("double");
 
                     b.HasKey("Id");
 

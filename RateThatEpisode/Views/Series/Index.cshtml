@@ -1,0 +1,69 @@
+﻿@model RatingViewModel
+@using System.Linq
+
+@{
+    ViewData["Title"] = "Index";
+    IEnumerable<Series> seriesList = Model.GetSeries;
+}
+
+<partial name="_Notification"/>
+
+
+<div class="container p-3">
+    <div class="row p-4">
+        <div class="col-6">
+            <h1><strong>Episode List:</strong></h1>
+        </div>
+        <div class="col-6 text-end">
+            <a asp-controller="Episodes" asp-action="Add" class="btn btn-outline-dark">
+                <i class="bi bi-plus-square"></i> &nbsp; Add new series</a>
+        </div>
+    </div>
+</div>
+
+<table class="table text-center" style="width:100%">
+    <thead>
+        <tr class="table-dark" style="width: 500px">
+            <th>
+                Series Name
+            </th>
+            <th>
+                Year of Debut
+            </th>
+            <th>
+                Number of Episodes
+            </th>
+            <th>
+                Overall Rating
+            </th>
+            <th>
+            </th>
+            <th>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var series in seriesList.ToList()) {
+            <tr class="table-light align-content-center">
+                <td width="30%">
+                   <strong>@series.Name</strong>
+                </td>
+                <td width="15%">
+                    @series.DebutYear.Year
+                </td>
+                <td width="15%">
+                    @series.NumberOfEpisodes
+                </td>
+                <td width="15%">
+                    <strong>@series.OverallRating</strong>
+                </td>
+                <td width="5%">
+                    <a class="badge bg-warning" asp-controller="Series" asp-action="Edit" asp-route-id="@series.Id"><i class="bi bi-pencil"> Edit</i></a>
+                </td>
+                <td width="5%">
+                    <a class="badge bg-danger" asp-controller="Series" asp-action="Delete" asp-route-id="@series.Id" onclick="return confirm('Are you sure you want to delete this?')"><i class="bi bi-trash"> Delete</i></a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -8,6 +8,8 @@
 }
 
 <partial name="_Notification"/>
+
+
 <div class="container p-3">
     <div class="row p-4">
         <div class="col-6">
@@ -46,6 +48,7 @@
     </thead>
     <tbody>
         <!-- ALWAYS USE ToList()!!!!!! otherwise program thinks the db connection is open (which is really dumb) -->
+        <!-- i'm guessing it populates and then closes instead of having it open for the entire foreach -->
         @foreach (var episode in episodes.ToList()) {
             <tr class="table-light align-content-center">
                 <td width="30%">
@@ -62,7 +65,7 @@
                     @episode.Synopsys
                 </td>
                 <td width="5%">
-                    <strong>@episode.OverallRating</strong>
+                    <strong>@episode.Rating</strong>
                 </td>
                 <td width="5%">
                     <a class="badge bg-warning" asp-controller="Episodes" asp-action="Edit" asp-route-id="@episode.Id"><i class="bi bi-pencil"> Edit</i></a>
