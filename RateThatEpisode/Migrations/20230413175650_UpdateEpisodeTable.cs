@@ -2,14 +2,11 @@
 
 #nullable disable
 
-namespace RateThatEpisode.Migrations
-{
+namespace RateThatEpisode.Migrations {
     /// <inheritdoc />
-    public partial class UpdateEpisodeTable : Migration
-    {
+    public partial class UpdateEpisodeTable : Migration {
         /// <inheritdoc />
-        protected override void Up(MigrationBuilder migrationBuilder)
-        {
+        protected override void Up(MigrationBuilder migrationBuilder) {
             migrationBuilder.AddColumn<double>(
                 name: "OverallRating",
                 table: "Episodes",
@@ -19,8 +16,7 @@ namespace RateThatEpisode.Migrations
         }
 
         /// <inheritdoc />
-        protected override void Down(MigrationBuilder migrationBuilder)
-        {
+        protected override void Down(MigrationBuilder migrationBuilder) {
             migrationBuilder.DropColumn(
                 name: "OverallRating",
                 table: "Episodes");

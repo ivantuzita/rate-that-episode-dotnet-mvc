@@ -1,17 +1,13 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Metadata;
+﻿using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace RateThatEpisode.Migrations
-{
+namespace RateThatEpisode.Migrations {
     /// <inheritdoc />
-    public partial class OneToManyRelationshipAdded : Migration
-    {
+    public partial class OneToManyRelationshipAdded : Migration {
         /// <inheritdoc />
-        protected override void Up(MigrationBuilder migrationBuilder)
-        {
+        protected override void Up(MigrationBuilder migrationBuilder) {
             migrationBuilder.AddColumn<int>(
                 name: "SeriesID",
                 table: "Episodes",
@@ -21,16 +17,14 @@ namespace RateThatEpisode.Migrations
 
             migrationBuilder.CreateTable(
                 name: "Series",
-                columns: table => new
-                {
+                columns: table => new {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     Name = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     DebutYear = table.Column<DateOnly>(type: "date", nullable: false)
                 },
-                constraints: table =>
-                {
+                constraints: table => {
                     table.PrimaryKey("PK_Series", x => x.Id);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
@@ -50,8 +44,7 @@ namespace RateThatEpisode.Migrations
         }
 
         /// <inheritdoc />
-        protected override void Down(MigrationBuilder migrationBuilder)
-        {
+        protected override void Down(MigrationBuilder migrationBuilder) {
             migrationBuilder.DropForeignKey(
                 name: "FK_Episodes_Series_SeriesID",
                 table: "Episodes");

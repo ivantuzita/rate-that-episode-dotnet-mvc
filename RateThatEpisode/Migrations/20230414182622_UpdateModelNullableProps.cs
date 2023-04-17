@@ -2,14 +2,11 @@
 
 #nullable disable
 
-namespace RateThatEpisode.Migrations
-{
+namespace RateThatEpisode.Migrations {
     /// <inheritdoc />
-    public partial class UpdateModelNullableProps : Migration
-    {
+    public partial class UpdateModelNullableProps : Migration {
         /// <inheritdoc />
-        protected override void Up(MigrationBuilder migrationBuilder)
-        {
+        protected override void Up(MigrationBuilder migrationBuilder) {
             migrationBuilder.AlterColumn<string>(
                 name: "Synopsys",
                 table: "Episodes",
@@ -32,8 +29,7 @@ namespace RateThatEpisode.Migrations
         }
 
         /// <inheritdoc />
-        protected override void Down(MigrationBuilder migrationBuilder)
-        {
+        protected override void Down(MigrationBuilder migrationBuilder) {
             migrationBuilder.UpdateData(
                 table: "Episodes",
                 keyColumn: "Synopsys",

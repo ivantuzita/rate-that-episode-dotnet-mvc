@@ -32,7 +32,7 @@ namespace RateThatEpisode.Controllers {
             }
             Series upSeries = _db.Series.Find(obj.Episode.SeriesID);
             upSeries.AddEpisode();
-            upSeries.setOverallRating(obj.Episode.Rating);
+            upSeries.addToOverallRating(obj.Episode.Rating);
             _db.Series.Attach(upSeries);
             _db.Entry(upSeries).Property(x => x.NumberOfEpisodes).IsModified = true;
             _db.Episodes.Add(obj.Episode);
@@ -85,10 +85,13 @@ namespace RateThatEpisode.Controllers {
                 return RedirectToAction("Index");
             }
             Series upSeries = _db.Series.Find(obj.SeriesID);
+            _db.Episodes.Remove(obj);
+            _db.SaveChanges();
             upSeries.RemoveEpisode();
+            upSeries.updateOverallRating(_db.Episodes.ToList().Where(e => e.SeriesID == upSeries.Id));
             _db.Series.Attach(upSeries);
             _db.Entry(upSeries).Property(x => x.NumberOfEpisodes).IsModified = true;
-            _db.Episodes.Remove(obj);
+            _db.Entry(upSeries).Property(x => x.OverallRating).IsModified = true;
             _db.SaveChanges();
             TempData["deleteSuccess"] = "The episode has been deleted successfully!";
             return RedirectToAction("Index");
