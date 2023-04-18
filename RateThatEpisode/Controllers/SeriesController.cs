@@ -35,6 +35,30 @@ namespace RateThatEpisode.Controllers {
             return RedirectToAction("Index");
         }
 
+        public IActionResult Edit(int? id) {
+
+            if (id == null || id == 0) { return NotFound(); }
+
+            var seriesFromDB = _db.Series.Find(id);
+
+            if (seriesFromDB == null) { return NotFound(); }
+
+            return View(seriesFromDB);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Edit(Series obj) {
+            if (!ModelState.IsValid) {
+                return View();
+            }
+            _db.Series.Attach(obj);
+            _db.Entry(obj).Property(x => x.Name).IsModified = true;
+            _db.SaveChanges();
+            TempData["editSuccess"] = "The episode has been edited successfully!";
+            return RedirectToAction("Index");
+        }
+
         public IActionResult Delete(int? id) {
 
             if (id == null || id == 0) { return NotFound(); }

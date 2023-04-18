@@ -8,7 +8,7 @@ namespace RateThatEpisode.Models {
 
         [Range(1, 5000, ErrorMessage = "Episode number must be between 1 and 5000!")]
         public int Number { get; set; }
-        public string? Synopsys { get; set; }
+        public string? Notes { get; set; }
         public double Rating { get; set; }
 
         public int SeriesID { get; set; }

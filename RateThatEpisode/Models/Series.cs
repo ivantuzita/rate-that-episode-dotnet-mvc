@@ -19,18 +19,14 @@ namespace RateThatEpisode.Models {
             NumberOfEpisodes--;
         }
 
-        public void addToOverallRating(double rating) {
-            OverallRating = (OverallRating + rating) / NumberOfEpisodes;
-        }
-
         public void updateOverallRating(IEnumerable<Episode> episodes) {
 
             if (episodes == null || NumberOfEpisodes == 0) {
                 OverallRating = 0;
                 return;
             }
-            var test = episodes.Select(e => e.Rating);
-            OverallRating = test.Sum() / NumberOfEpisodes;
+
+            OverallRating = episodes.Select(e => e.Rating).Sum() / NumberOfEpisodes;
 
         }
 

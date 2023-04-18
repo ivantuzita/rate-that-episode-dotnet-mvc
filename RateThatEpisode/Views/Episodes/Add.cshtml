@@ -17,10 +17,10 @@
                 <small class="form-text text-muted">What is the name of the episode? (If you don't know, it's okay to leave it blank!)</small>
             </div>
             <div class="form-group mt-4">
-                <label asp-for="Episode.Synopsys" class="form-label"><strong>Episode Synopsys:</strong></label>
-                <input asp-for="Episode.Synopsys" class="form-control" placeholder="Enter episode synopsys">
-                <span asp-validation-for="Episode.Synopsys" class="badge bg-danger mt-2"></span>
-                <small class="form-text text-muted">What is the synopsys of the episode? (If you don't know, it's okay to leave it blank!)</small>
+                <label asp-for="Episode.Notes" class="form-label"><strong>Your thoughts:</strong></label>
+                <input asp-for="Episode.Notes" class="form-control" placeholder="Enter your thoughts about this episode">
+                <span asp-validation-for="Episode.Notes" class="badge bg-danger mt-2"></span>
+                <small class="form-text text-muted">What did you think about the episode? (You can always edit later or leave it blank!)</small>
             </div>
             <div class="form-group">
               <label asp-for="Episode.Series" class="form-label mt-4">Select series</label>

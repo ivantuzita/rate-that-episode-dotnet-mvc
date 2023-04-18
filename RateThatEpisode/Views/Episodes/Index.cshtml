@@ -24,7 +24,7 @@
 
 <table class="table text-center" style="width:100%">
     <thead>
-        <tr class="table-dark" style="width: 500px">
+        <tr class="table-dark" style="width: 300px">
             <th>
                 Series Name
             </th>
@@ -35,10 +35,10 @@
                 Episode Name
             </th>
             <th>
-                Episode Synopsis
+                Your thoughts
             </th>
             <th>
-                Overall Rating
+                Your Rating
             </th>
             <th>
             </th>
@@ -51,18 +51,18 @@
         <!-- i'm guessing it populates and then closes instead of having it open for the entire foreach -->
         @foreach (var episode in episodes.ToList()) {
             <tr class="table-light align-content-center">
-                <td width="30%">
+                <td width="10%">
                     <!-- And opening another connection (variable series in this case) is impossible! -->
                     @series.Where(b => b.Id == episode.SeriesID).Select(b => b.Name).First()
                 </td>
                 <td width="5%">
                     @episode.Number
                 </td>
-                <td width="30%">
+                <td width="15%">
                     <strong>@episode.Name</strong>
                 </td>
                 <td width="50%">
-                    @episode.Synopsys
+                    @episode.Notes
                 </td>
                 <td width="5%">
                     <strong>@episode.Rating</strong>
