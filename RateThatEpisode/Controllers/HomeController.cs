@@ -1,17 +1,20 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using RateThatEpisode.Data;
 using RateThatEpisode.Models;
 using System.Diagnostics;
 
 namespace RateThatEpisode.Controllers {
     public class HomeController : Controller {
-        private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger) {
-            _logger = logger;
+        private readonly ApplicationDbContext _db;
+        private RatingViewModel ViewModel = new RatingViewModel();
+        public HomeController(ApplicationDbContext db) {
+            _db = db;
         }
 
         public IActionResult Index() {
-            return View();
+            ViewModel.GetSeries = _db.Series;
+            return View(ViewModel);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

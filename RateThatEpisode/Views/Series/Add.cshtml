@@ -10,6 +10,12 @@
                 <span asp-validation-for="Series.Name" class="badge bg-danger mt-2"></span>
                 <small class="form-text text-muted">What is the name of the series?</small>
             </div>
+            <div class="form-group">
+                <label asp-for="Series.MAL_url" class="form-label"><strong>URL from MyAnimeList:</strong></label>  
+                <input asp-for="Series.MAL_url" class="form-control" placeholder="Enter MyAnimeList URL:" />
+                <span asp-validation-for="Series.MAL_url" class="badge bg-danger mt-2"></span>
+                <small class="form-text text-muted">If you want to get this series' MAL score, just input the MAL URL! (optional)</small>
+            </div>
             <div class="modal-footer">
                 <button type="submit" class="btn btn-outline-dark">Save changes</button>
                 <a asp-controller="Series" asp-action="Index" class="btn btn-outline-light">Cancel</a>

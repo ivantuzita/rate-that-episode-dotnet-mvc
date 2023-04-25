@@ -1,6 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using RateThatEpisode.Data;
 using RateThatEpisode.Models;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using System.Net.Http.Headers;
+using System.Security.Policy;
 
 namespace RateThatEpisode.Controllers {
     public class SeriesController : Controller {
@@ -24,6 +28,17 @@ namespace RateThatEpisode.Controllers {
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Add(RatingViewModel obj) {
+
+            int mal_id = int.Parse(obj.Series.MAL_url.Split('/')[4]);
+
+            using (var jikan = new HttpClient()) {
+                var response = jikan.GetAsync($"https://api.jikan.moe/v4/anime/{mal_id}").Result;
+                response.EnsureSuccessStatusCode();
+                string responseBody = response.Content.ReadAsStringAsync().Result;
+                var parsedObject = JObject.Parse(responseBody);
+                var scoreJson = parsedObject["data"]["score"].ToString();
+                obj.Series.MAL_Rating = double.Parse(scoreJson);
+            }
 
             if (!ModelState.IsValid) {
                 return View();

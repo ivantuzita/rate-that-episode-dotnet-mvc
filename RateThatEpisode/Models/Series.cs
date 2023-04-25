@@ -9,6 +9,8 @@ namespace RateThatEpisode.Models {
         public string Name { get; set; }
         public int NumberOfEpisodes { get; set; }
         public double OverallRating { get; set; }
+        public double MAL_Rating { get; set; }
+        public string? MAL_url { get; set; }
         public ICollection<Episode>? Episodes { get; set; }
 
         public void AddEpisode() {

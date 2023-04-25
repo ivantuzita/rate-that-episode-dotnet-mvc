@@ -1,7 +1,127 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
+    IEnumerable<Series> series = Model.GetSeries;
 }
 
 <div class="text-center p-5">
-    <h1 class="display-4">Series with highest number of episodes: </h1>
+    <h1 class="display-6">Series with highest number of episodes: </h1>
 </div>
+
+<table class="table text-center" style="width:100%">
+    <thead>
+        <tr class="table-dark" style="width: 300px">
+            <th>
+                Series Name
+            </th>
+            <th>
+                Number of Episodes
+            </th>
+            <th>
+                Overall Rating
+            </th>
+            <th>
+                MyAnimeList Rating
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var s in series.ToList().OrderByDescending(s => s.NumberOfEpisodes)) {
+            <tr class="table-light align-content-center">
+                <td width="10%">
+                    @s.Name
+                </td>
+                <td width="5%">
+                    @s.NumberOfEpisodes
+                </td>
+                <td width="5%">
+                    @s.OverallRating
+                </td>
+                <td width="5%">
+                    @s.MAL_Rating
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div class="text-center p-5">
+    <h1 class="display-6">Series with highest overall rating: </h1>
+</div>
+
+<table class="table text-center" style="width:100%">
+    <thead>
+        <tr class="table-dark" style="width: 300px">
+            <th>
+                Series Name
+            </th>
+            <th>
+                Number of Episodes
+            </th>
+            <th>
+                Overall Rating
+            </th>
+            <th>
+                MyAnimeList Rating
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var s in series.ToList().OrderByDescending(s => s.OverallRating)) {
+            <tr class="table-light align-content-center">
+                <td width="10%">
+                    @s.Name
+                </td>
+                <td width="5%">
+                    @s.NumberOfEpisodes
+                </td>
+                <td width="5%">
+                    @s.OverallRating
+                </td>
+                <td width="5%">
+                    @s.MAL_Rating
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div class="text-center p-5">
+    <h1 class="display-6">Series with highest MyAnimeList overall rating: </h1>
+</div>
+
+<table class="table text-center" style="width:100%">
+    <thead>
+        <tr class="table-dark" style="width: 300px">
+            <th>
+                Series Name
+            </th>
+            <th>
+                Number of Episodes
+            </th>
+            <th>
+                Overall Rating
+            </th>
+            <th>
+                MyAnimeList Rating
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var s in series.ToList().OrderByDescending(s => s.MAL_Rating)) {
+            <tr class="table-light align-content-center">
+                <td width="10%">
+                    @s.Name
+                </td>
+                <td width="5%">
+                    @s.NumberOfEpisodes
+                </td>
+                <td width="5%">
+                    @s.OverallRating
+                </td>
+                <td width="5%">
+                    @s.MAL_Rating
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

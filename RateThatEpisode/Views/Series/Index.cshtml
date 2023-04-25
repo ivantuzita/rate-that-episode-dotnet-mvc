@@ -33,6 +33,9 @@
                 Overall Rating
             </th>
             <th>
+                MyAnimeList Rating
+            </th>
+            <th>
             </th>
             <th>
             </th>
@@ -49,6 +52,9 @@
                 </td>
                 <td width="15%">
                     <strong>@series.OverallRating</strong>
+                </td>
+                <td width="15%">
+                    <strong>@series.MAL_Rating</strong>
                 </td>
                 <td width="5%">
                     <a class="badge bg-warning" asp-controller="Series" asp-action="Edit" asp-route-id="@series.Id"><i class="bi bi-pencil"> Edit</i></a>
